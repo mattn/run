@@ -57,6 +57,10 @@ func run() int {
 	flag.StringVar(&ie, "i", cp, "encoding")
 	flag.StringVar(&oe, "o", cp, "encoding")
 	flag.Parse()
+	if flag.NArg() == 0 {
+		flag.Usage()
+		os.Exit(1)
+	}
 	ioenc := encoding.GetEncoding(oe)
 	if ioenc == nil {
 		fmt.Fprintln(os.Stderr, "unknown encoding")
